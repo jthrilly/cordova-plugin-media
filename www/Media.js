@@ -135,14 +135,14 @@ Media.prototype.startRecord = function() {
  * Pause recording audio file.
  */
 Media.prototype.pauseRecord = function() {
-exec(null, this.errorCallback, "Media", "pauseRecordingAudio", [this.id]);
+    exec(null, this.errorCallback, "Media", "pauseRecordingAudio", [this.id]);
 };
 
 /**
 * Resume recording audio file.
 */
 Media.prototype.resumeRecord = function() {
-exec(null, this.errorCallback, "Media", "resumeRecordingAudio", [this.id]);
+    exec(null, this.errorCallback, "Media", "resumeRecordingAudio", [this.id]);
 };
 
 /**
