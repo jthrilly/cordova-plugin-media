@@ -24,7 +24,7 @@
 #define HTTP_SCHEME_PREFIX @"http://"
 #define HTTPS_SCHEME_PREFIX @"https://"
 #define CDVFILE_PREFIX @"cdvfile://"
-#define RECORDING_WAV @"wav"
+#define RECORDING_WAV @"m4a"
 
 @implementation CDVSound
 
@@ -525,8 +525,16 @@
                 }
             }
             
+            
+            // Define some settings
+            NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                            [NSNumber numberWithFloat:16000.0], AVSampleRateKey,
+                                            [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
+                                            nil];
+            
             // create a new recorder for each start record
-            audioFile.recorder = [[CDVAudioRecorder alloc] initWithURL:audioFile.resourceURL settings:nil error:&error];
+            audioFile.recorder = [[CDVAudioRecorder alloc] initWithURL:audioFile.resourceURL settings:recordSettings error:&error];
             
             bool recordingSuccess = NO;
             if (error == nil) {
